@@ -80,7 +80,8 @@ Promise.all([promiseOnWSOpen, promiseOnGamepadConnected])
 
     if (Object.keys(diff).length) {
       var data = JSON.stringify(diff)
+      console.log(`sending data: ${data}`)
       ws.send(data)
     }
-  }, 10)
+  }, 100)
 })
