@@ -6,7 +6,7 @@ var net             = require('net')
 
 var app = koa()
 app.use(serve('assets'));
-var server = app.listen(8080)
+var server = app.listen(process.env.PORT_WEB || 8080)
 var wsServer = new WebSocketServer({ server: server })
 
 wsServer.on('connection', function connection(client) {
@@ -25,7 +25,6 @@ wsServer.on('connection', function connection(client) {
 });
 
 var tcpServer = net.createServer()
-tcpServer.listen(8079)
 var gopigoClient
 tcpServer.on('connection', function(client) {
   gopigoClient = client
@@ -33,3 +32,5 @@ tcpServer.on('connection', function(client) {
 tcpServer.on('error', function(error) {
   console.log(error.message)
 })
+
+tcpServer.listen(process.env.PORT_PI || 8079)
