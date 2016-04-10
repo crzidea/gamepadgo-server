@@ -20,6 +20,16 @@ var promiseOnWSOpen = new Promise(function(resolve, reject) {
     console.log('WebSocket connected');
     resolve(ws)
   };
+  ws.onmessage = function(event) {
+    var data = JSON.parse(event.data)
+    var clientIP = data.body
+    var iframe = document.createElement('iframe')
+    iframe.src = `https://${clientIP}:8080/stream/webrtc`
+    iframe.style.width = '100vw'
+    iframe.style.height = '100vh'
+    iframe.style.border = 0
+    document.body.appendChild(iframe)
+  }
 })
 
 var promiseOnGamepadConnected = new Promise(function(resolve, reject) {
