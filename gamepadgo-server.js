@@ -24,9 +24,10 @@ wsServer.on('connection', function connection(client) {
     gopigoClient.write(message)
     gopigoClient.write(String.fromCharCode(0))
   });
-  var data = JSON.stringify({type: 'client_ip', body: '192.168.10.53'});
-  //var data = JSON.stringify({type: 'client_ip', body: clientIP});
-  client.send(data)
+  if (clientIP) {
+    var data = JSON.stringify({type: 'client_ip', body: clientIP});
+    client.send(data)
+  }
 });
 
 var tcpServer = net.createServer()
