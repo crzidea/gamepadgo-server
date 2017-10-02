@@ -5,5 +5,5 @@ Server for GamepadGo. See the [Build GamepadGo with 250 Lines of Code](https://c
 ## Run with docker
 
 ```sh
-docker run --restart always -d -p 8080:8080 -p 8079:8079 crzidea/gamepadgo-server
+docker-compose up
 ```

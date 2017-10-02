@@ -1,0 +1,10 @@
+version: "3"
+services:
+  server:
+    image: crzidea/gamepadgo-server
+    volumes:
+      - /etc/localtime:/etc/localtime
+    restart: always
+    ports:
+      - 8080:8080
+      - 8079:8079
